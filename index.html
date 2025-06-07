@@ -1,3 +1,57 @@
-<h1>
-  hola
-</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Te Amo ♥</title>
+  <style>
+    body {
+      margin: 0;
+      background: pink;
+      overflow: hidden;
+    }
+    .teamo {
+      position: absolute;
+      color: red;
+      font-weight: bold;
+      font-family: Arial;
+    }
+  </style>
+</head>
+<body>
+
+<audio autoplay loop>
+  <source src="amor.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
+<script>
+  const NUM = 1000;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const elements = [];
+
+  for (let i = 0; i < NUM; i++) {
+    const el = document.createElement('div');
+    el.classList.add('teamo');
+    el.textContent = "Te Amo <3";
+    el.style.left = Math.random() * width + 'px';
+    el.style.top = Math.random() * height + 'px';
+    el.dx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1);
+    el.dy = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1);
+    document.body.appendChild(el);
+    elements.push(el);
+  }
+
+  setInterval(() => {
+    elements.forEach(el => {
+      let x = parseFloat(el.style.left) + el.dx;
+      let y = parseFloat(el.style.top) + el.dy;
+      if (x < 0 || x > width - 100) el.dx *= -1;
+      if (y < 0 || y > height - 20) el.dy *= -1;
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+    });
+  }, 30);
+</script>
+
+</body>
